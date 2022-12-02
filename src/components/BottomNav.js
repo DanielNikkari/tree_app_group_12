@@ -9,16 +9,16 @@ export const BottomNav = () => {
       <nav className="navbar fixed-bottom navbar-light bg-light">
         <ul className="navbar-nav d-flex flex-row me-0 justify-content-between w-100">
         <li className="nav-item m-3 me-lg-0">
-          <a href="/" className="navbar-brand" ><i class="fa fa-home"></i></a>
+          <a href="/" className="navbar-brand" ><i className="fa fa-home"></i></a>
         </li>
         <li className="nav-item m-3 me-lg-0">
-          <a href="/treeregister" className="navbar-brand" ><i class="fa fa-plus"></i></a>
+          <a href="/treeregister" className="navbar-brand" ><i className="fa fa-plus"></i></a>
         </li>
         <li className="nav-item m-3 me-lg-0">
-          <a href="/" className="navbar-brand" ><i class="fa fa-list"></i></a>
+          <a href="/treelist" className="navbar-brand" ><i className="fa fa-list"></i></a>
         </li>
         <li className="nav-item m-3 me-lg-0">
-          <a href="/r" className="navbar-brand" ><i class="fa fa-user"></i></a>
+          <a href="/" className="navbar-brand" ><i className="fa fa-user"></i></a>
         </li>
         </ul>
       </nav>

@@ -5,6 +5,7 @@ import { Routes, Route } from 'react-router-dom'
 import { Login } from './components/Login';
 import { Register } from './components/Register';
 import { BottomNav } from './components/BottomNav';
+import { TreeList } from './components/TreeList';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
         <Route path='/treeregister' element={<TreeRegister />} />
+        <Route path='/treelist' element={<TreeList />} />
       </Routes>
     </div>
   );
