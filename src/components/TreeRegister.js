@@ -1,37 +1,50 @@
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect } from "react"
 import "../styles/TreeRegister.css"
-import { Col, Row } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.css';
+import Spinner from 'react-bootstrap/Spinner';
 
 const GOOGLE_API_KEY = process.env.REACT_APP_GOOGLE_API_KEY
 
 export const TreeRegister = (props) => {
+  const [treeObject, setTreeObject] = useState({})
   const [newTree, setNewTree] = useState("")
   const [numPlanted, setNumPlanted] = useState("")
   const [location, setLocation] = useState({ latitude: "", longitude: "" })
   const [file, setFile] = useState({ selectedFile: null })
   const [zoom, setZoom] = useState("12")
+  const [loading, setLoading] = useState(false)
 
   const addTree = (event) => {
     event.preventDefault()
     console.log("Adding tree")
+    const data = {
+      species: newTree,
+      numPlanted: numPlanted,
+      location: location,
+      img: file,
+    }
+    setTreeObject(data)
+    console.log(JSON.stringify(treeObject))
   }
 
   const handleTreeChange = (event) => {
-    console.log(event.target.value)
+    // console.log(event.target.value)
     setNewTree(event.target.value)
   }
 
   const handleNumberChange = (event) => {
-    console.log(event.target.value)
+    // console.log(event.target.value)
     setNumPlanted(event.target.value)
   }
 
   const getLocation = () => {
+    setLoading(true)
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(getCoordinates, handleLocationErrors)
     } else {
+      setLoading(false)
       alert("Geolocation is not supported by this browser.")
     }
   }
@@ -44,18 +57,23 @@ export const TreeRegister = (props) => {
   const handleLocationErrors = (error) => {
       switch(error.code) {
         case error.PERMISSION_DENIED:
+          setLoading(false)
           alert("User denied the request for Geolocation.")
           break;
         case error.POSITION_UNAVAILABLE:
+          setLoading(false)
           alert("Location information is unavailable.")
           break;
         case error.TIMEOUT:
+          setLoading(false)
           alert("The request to get user location timed out.")
           break;
         case error.UNKNOWN_ERROR:
+          setLoading(false)
           alert("An unknown error occurred.")
           break;
         default:
+          setLoading(false)
           alert("An unknown error occurred.")
       }
     }
@@ -69,6 +87,7 @@ export const TreeRegister = (props) => {
   }
 
   const onFileChange = (event) => {
+    console.log(event.target.files[0])
     setFile(event.target.files[0])
   }
 
@@ -77,7 +96,7 @@ export const TreeRegister = (props) => {
   }
 
   return (
-    <div>
+    <Container>
       <Row>
       <Col>
       <h3>Logged in as John Doe</h3>
@@ -93,6 +112,9 @@ export const TreeRegister = (props) => {
             location.latitude && location.longitude ? 
             <img src={`https://maps.googleapis.com/maps/api/staticmap?center=${location.latitude},${location.longitude}&format=gif&zoom=${zoom}&size=400x400&markers=color:red%7C${location.latitude},${location.longitude}&key=${GOOGLE_API_KEY}`} alt='' />
             :
+            loading ?
+            <Spinner animation="border" variant="primary" />
+            :
             null
           }
           <br />
@@ -103,7 +125,7 @@ export const TreeRegister = (props) => {
             Zoom in or out
           </Form.Text>
         </div>
-        <button className="btn btn-primary" type="button" onClick={getLocation}>Get Location</button>
+          <button className="btn btn-primary" type="button" onClick={getLocation}>Get Location</button>
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formInputFile">
@@ -121,6 +143,6 @@ export const TreeRegister = (props) => {
       </Form>
       </Col>
       </Row>
-    </div>
+    </Container>
   )
 }
