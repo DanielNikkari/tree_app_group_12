@@ -34,7 +34,17 @@ export const TreeList = () => {
       user: "Unnamed",
       location: {
         latitude: 36.21593476277147,
-        longitude: 119.831096655647787,
+        longitude: -119.831096655647787,
+      },
+      img: file,
+    },
+    {
+      name: "Californian Palm",
+      numPlanted: 56,
+      user: "Naomi Weston",
+      location: {
+        latitude: 33.21593476277147,
+        longitude: 117.831096655647787,
       },
       img: file,
     },
@@ -44,10 +54,15 @@ export const TreeList = () => {
     searchValue === ""
       ? treeList
       : treeList.filter((tree) => {
-          const index = tree.name
+          const toSearch = tree.user + " " + tree.name
+          console.log(toSearch)
+          const index1 = toSearch
             .toLowerCase()
             .indexOf(searchValue.toLocaleLowerCase())
-          if (index === -1) {
+          // const index2 = tree.name
+          //   .toLowerCase()
+          //   .indexOf(searchValue.toLocaleLowerCase())
+          if (index1 === -1) {
             return false
           } else {
             return true

@@ -4,6 +4,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.css';
 import Spinner from 'react-bootstrap/Spinner';
+import { MDBInput } from "mdb-react-ui-kit";
 
 const GOOGLE_API_KEY = process.env.REACT_APP_GOOGLE_API_KEY
 
@@ -96,14 +97,16 @@ export const TreeRegister = (props) => {
   }
 
   return (
-    <Container>
+    <Container className="treeregister-page">
       <Row>
       <Col>
       <h3>Logged in as John Doe</h3>
       <Form onSubmit={addTree}>
         <Form.Group className="mb-3" controlId="formBasicInfo">
-          <input value={newTree} placeholder="Species" onChange={handleTreeChange} />
-          <input value={numPlanted} placeholder="Number planted" onChange={handleNumberChange} />
+          {/* <input value={newTree} placeholder="Species" onChange={handleTreeChange} /> */}
+          {/* <input value={numPlanted} placeholder="Number planted" onChange={handleNumberChange} /> */}
+          <MDBInput wrapperClass='mb-4 m-3' label='Species' id='' type='email' size="" onChange={handleTreeChange} />
+          <MDBInput wrapperClass='mb-4 m-3' label='Number planted' id='' type='email' size="" onChange={handleNumberChange} />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formLocation">
@@ -118,12 +121,14 @@ export const TreeRegister = (props) => {
             null
           }
           <br />
-          <input value={location.latitude} placeholder="Latitude" onChange={handleLatitudeChange} />
-          <input value={location.longitude} placeholder="Longitude" onChange={handleLongitudeChange} />
-          <input type="range" min="1" max="16" value={zoom} onChange={handleZoomChange} />
+          <input className="m-3" type="range" min="1" max="16" value={zoom} onChange={handleZoomChange} />
           <Form.Text className="text-muted">
-            Zoom in or out
+            Slide to zoom in or out
           </Form.Text>
+          <MDBInput value={location.latitude} wrapperClass='mb-4 m-3' label='Latitude' id='' type='email' size="" onChange={handleLatitudeChange} />
+          <MDBInput value={location.longitude} wrapperClass='mb-4 m-3' label='Longitude' id='' type='email' size="" onChange={handleLongitudeChange} />
+          {/* <input value={location.latitude} placeholder="Latitude" onChange={handleLatitudeChange} /> */}
+          {/* <input value={location.longitude} placeholder="Longitude" onChange={handleLongitudeChange} /> */}
         </div>
           <button className="btn btn-primary" type="button" onClick={getLocation}>Get Location</button>
         </Form.Group>
