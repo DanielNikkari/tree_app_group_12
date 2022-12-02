@@ -4,7 +4,7 @@ import { Col, Row } from "react-bootstrap";
 import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.css';
 
-const GOOGLE_API_KEY = "AIzaSyB1Xbjx3kwYojmIWymDjHbO1gg0ZkG8rtU"
+const GOOGLE_API_KEY = process.env.REACT_APP_GOOGLE_API_KEY
 
 export const TreeRegister = (props) => {
   const [newTree, setNewTree] = useState("")
