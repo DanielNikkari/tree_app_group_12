@@ -11,7 +11,7 @@ import {
   MDBCheckbox
 }
 from 'mdb-react-ui-kit'
-import exampleLogo from "../images/logo/example_logo.jpg"
+import logo from "../images/logo/logo.svg"
 
 export const Login = () => {
   const [email, setEmail] = useState("")
@@ -20,8 +20,8 @@ export const Login = () => {
   return (
     <MDBContainer fluid className="p-3 my-5">
       <MDBRow>
-      <MDBCol col='10' md='6'>
-          <img src={exampleLogo} className="img-fluid" alt="Logo" />
+      <MDBCol col='10' md='6' className='mb-5'>
+          <img src={logo} style={{height: '500px'}} className="img-fluid" alt="Logo" />
         </MDBCol>
 
         <MDBCol col='4' md='6'>

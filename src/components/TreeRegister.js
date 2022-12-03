@@ -5,6 +5,8 @@ import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.css';
 import Spinner from 'react-bootstrap/Spinner';
 import { MDBInput } from "mdb-react-ui-kit";
+import apiService from "../services/apiService";
+import { Notification } from "./Notifications";
 
 const GOOGLE_API_KEY = process.env.REACT_APP_GOOGLE_API_KEY
 
@@ -16,18 +18,47 @@ export const TreeRegister = (props) => {
   const [file, setFile] = useState({ selectedFile: null })
   const [zoom, setZoom] = useState("12")
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(false)
+  const [message, setMessage] = useState(null)
 
   const addTree = (event) => {
     event.preventDefault()
     console.log("Adding tree")
+    console.log(file)
     const data = {
-      species: newTree,
-      numPlanted: numPlanted,
+      name: newTree,
+      numberPlanted: numPlanted,
       location: location,
-      img: file,
+      image: file,
     }
     setTreeObject(data)
     console.log(JSON.stringify(treeObject))
+
+    let bodyFormData = new FormData();
+
+    bodyFormData.append('name', newTree)
+    bodyFormData.append('numberPlanted', numPlanted)
+    bodyFormData.append('latitude', location.latitude)
+    bodyFormData.append('longitude', location.longitude)
+    bodyFormData.append('image', file)
+
+    apiService.add(bodyFormData).then(response => {
+      console.log("tree data added succesfully!")
+      setNewTree("")
+      setNumPlanted("")
+      setLocation({ latitude: "", longitude: "" })
+      setFile({ selectedFile: null })
+      setLoading(false)
+
+      setMessage("Trees logged succesfully")
+      setError(false)
+      setTimeout(() => {
+        setMessage(null)
+      }, 3000)
+    })
+    .catch((error) => {
+      console.log("Error:", error)
+    })
   }
 
   const handleTreeChange = (event) => {
@@ -100,13 +131,14 @@ export const TreeRegister = (props) => {
     <Container className="treeregister-page">
       <Row>
       <Col>
+      <Notification message={message} error={error} />
       <h3>Logged in as John Doe</h3>
       <Form onSubmit={addTree}>
         <Form.Group className="mb-3" controlId="formBasicInfo">
           {/* <input value={newTree} placeholder="Species" onChange={handleTreeChange} /> */}
           {/* <input value={numPlanted} placeholder="Number planted" onChange={handleNumberChange} /> */}
-          <MDBInput wrapperClass='mb-4 m-3' label='Species' id='' type='email' size="" onChange={handleTreeChange} />
-          <MDBInput wrapperClass='mb-4 m-3' label='Number planted' id='' type='email' size="" onChange={handleNumberChange} />
+          <MDBInput value={newTree} wrapperClass='mb-4 m-3' label='Species' id='' type='text' size="" onChange={handleTreeChange} />
+          <MDBInput value={numPlanted} wrapperClass='mb-4 m-3' label='Number planted' id='' type='text' size="" onChange={handleNumberChange} />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formLocation">
@@ -125,8 +157,8 @@ export const TreeRegister = (props) => {
           <Form.Text className="text-muted">
             Slide to zoom in or out
           </Form.Text>
-          <MDBInput value={location.latitude} wrapperClass='mb-4 m-3' label='Latitude' id='' type='email' size="" onChange={handleLatitudeChange} />
-          <MDBInput value={location.longitude} wrapperClass='mb-4 m-3' label='Longitude' id='' type='email' size="" onChange={handleLongitudeChange} />
+          <MDBInput value={location.latitude} wrapperClass='mb-4 m-3' label='Latitude' id='' type='number' size="" onChange={handleLatitudeChange} />
+          <MDBInput value={location.longitude} wrapperClass='mb-4 m-3' label='Longitude' id='' type='number' size="" onChange={handleLongitudeChange} />
           {/* <input value={location.latitude} placeholder="Latitude" onChange={handleLatitudeChange} /> */}
           {/* <input value={location.longitude} placeholder="Longitude" onChange={handleLongitudeChange} /> */}
         </div>

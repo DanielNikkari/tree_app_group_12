@@ -1,6 +1,11 @@
 import { Card, Row, Col, ListGroup } from "react-bootstrap"
 
+const GOOGLE_API_KEY = process.env.REACT_APP_GOOGLE_API_KEY
+
 export const TreeCard = (props) => {
+
+  const date = new Date(props.date)
+
   return (
     <Row>
       <Col className="m-3">
@@ -9,6 +14,8 @@ export const TreeCard = (props) => {
       <Col className="m-3">
         <h3>{props.name}, {props.numPlanted}</h3>
         <h4>Planted by {props.user}</h4>
+        <img src={`https://maps.googleapis.com/maps/api/staticmap?center=${props.location.latitude},${props.location.longitude}&format=gif&zoom=${14}&size=300x100&markers=color:red%7C${props.location.latitude},${props.location.longitude}&key=${GOOGLE_API_KEY}`} alt='' />
+        <h4>Planted on {date.toDateString()}</h4>
       </Col>
     </Row>
   )
