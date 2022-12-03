@@ -9,6 +9,8 @@ export const TreeList = () => {
   const [searchValue, setSearchValue] = useState("")
   const [treeList, setTreeList] = useState([])
 
+  console.log("Called TreeList")
+
   // const treeList = [
   //   {
   //     name: "Silver Birch",
@@ -55,41 +57,53 @@ export const TreeList = () => {
   useEffect(() => {
     apiService.getAll().then((response) => {
       console.log(response.data)
+      console.log(response.data.length)
       setTreeList(response.data)
+      handleSearch()
     })
   }, [])
 
-  const treesToShow =
+    const treesToShow =
     searchValue === ""
       ? treeList
       : treeList.filter((tree) => {
           const toSearch = tree.user + " " + tree.name
           console.log(toSearch)
-          const index1 = tree.name
+          const index1 = toSearch
             .toLowerCase()
             .indexOf(searchValue.toLocaleLowerCase())
           if (index1 === -1) {
-            console.log("A")
             return false
           } else {
-            console.log("B")
             return true
           }
         })
 
+  
   const handleSearch = (event) => {
-    setSearchValue(event.target.value)
+    event.preventDefault()
+    console.log(event.target.value)
+    // setSearchValue(event.target.value)
   }
 
+  const handleSearchValue = (event) => {
+    setSearchValue(event.target.value)
+  }
 
   return(
     <Container>
       <Col>
-        <MDBInput wrapperClass='mb-4 m-3' label='search' id='' type='text' size="" onChange={handleSearch} />
+      <form onSubmit={handleSearch}>
+        <MDBInput value={searchValue} wrapperClass='mb-4 m-3' label='search' id='' type='text' size="" onChange={handleSearchValue} />
+        <button type="submit" className="btn btn-primary">
+          <i className="fas fa-search"></i>
+        </button>
+      </form>
+
         <ul>
         {treesToShow.map((tree, index) => {
           const base64string = btoa(String.fromCharCode(...new Uint8Array(tree.image.data.data)))
-          return <TreeCard key={index} name={tree.name} numPlanted={tree.numPlanted} user={tree.user} location={tree.location} date={tree.createdAt} img={`data:image/${tree.image.contentType};base64,${base64string}`} />
+          return <TreeCard key={index} id={tree.id} name={tree.name} numPlanted={tree.numPlanted} user={tree.user} location={tree.location} date={tree.createdAt} img={`data:image/${tree.image.contentType};base64,${base64string}`} />
         })}
         </ul>
       </Col>

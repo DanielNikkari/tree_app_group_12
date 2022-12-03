@@ -7,7 +7,8 @@ const getAll = () => {
 }
 
 const getOne = (id) => {
-  return axios.get(`baseUrl/${id}`)
+  const request = axios.get(`${baseUrl}/${id}`)
+  return request.then(response => response.data)
 }
 
 // const add = (newObj) => {

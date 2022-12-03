@@ -21,6 +21,8 @@ export const TreeRegister = (props) => {
   const [error, setError] = useState(false)
   const [message, setMessage] = useState(null)
 
+  console.log("Called TreeRegister")
+
   const addTree = (event) => {
     event.preventDefault()
     console.log("Adding tree")
