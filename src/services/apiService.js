@@ -3,7 +3,8 @@ import axios from "axios"
 const baseUrl = "http://localhost:8080/api/trees"
 
 const getAll = () => {
-  return axios.get(baseUrl)
+  const request =  axios.get(baseUrl)
+  return request.then(response => response.data)
 }
 
 const getOne = (id) => {
@@ -24,6 +25,16 @@ const add = (formData) => {
   })
 }
 
+const addUpdate = (formData, id) => {
+  console.log(id)
+  return axios({
+    method: "post",
+    url: `${baseUrl}/${id}/update`,
+    data: formData,
+    headers: { "Content-Type": "multipart/form-data" },
+  })
+}
+
 const deletePerson = (id) => {
   return axios.delete(`${baseUrl}/${id}`)
 }
@@ -33,4 +44,4 @@ const update = (id, newObj) => {
   return request
 }
 
-export default { getAll, getOne, add, deletePerson, update }
+export default { getAll, getOne, add, addUpdate, deletePerson, update }

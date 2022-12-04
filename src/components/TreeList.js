@@ -55,11 +55,10 @@ export const TreeList = () => {
   // ]
 
   useEffect(() => {
-    apiService.getAll().then((response) => {
-      console.log(response.data)
-      console.log(response.data.length)
-      setTreeList(response.data)
-      handleSearch()
+    apiService.getAll().then((data) => {
+      console.log(data)
+      console.log(data.length)
+      setTreeList(data)
     })
   }, [])
 
@@ -83,30 +82,33 @@ export const TreeList = () => {
   const handleSearch = (event) => {
     event.preventDefault()
     console.log(event.target.value)
-    // setSearchValue(event.target.value)
+    setSearchValue(event.target.value)
   }
 
-  const handleSearchValue = (event) => {
-    setSearchValue(event.target.value)
+  const _arrayBufferToBase64 = ( buffer ) => {
+    var binary = '';
+    var bytes = new Uint8Array( buffer );
+    var len = bytes.byteLength;
+    for (var i = 0; i < len; i++) {
+        binary += String.fromCharCode( bytes[ i ] );
+    }
+    return window.btoa( binary );
   }
 
   return(
     <Container>
       <Col>
-      <form onSubmit={handleSearch}>
-        <MDBInput value={searchValue} wrapperClass='mb-4 m-3' label='search' id='' type='text' size="" onChange={handleSearchValue} />
-        <button type="submit" className="btn btn-primary">
-          <i className="fas fa-search"></i>
-        </button>
-      </form>
-
+      <MDBInput value={searchValue} wrapperClass='mb-4 m-3' label='search' id='' type='text' size="" onChange={handleSearch} />
+ 
         <ul>
         {treesToShow.map((tree, index) => {
-          const base64string = btoa(String.fromCharCode(...new Uint8Array(tree.image.data.data)))
+          // const base64string = btoa(String.fromCharCode(...new Uint8Array(tree.image.data.data)).reduce((data, byte) => data + String.fromCharCode(byte), ''))
+          const base64string = _arrayBufferToBase64(tree.image.data.data)
           return <TreeCard key={index} id={tree.id} name={tree.name} numPlanted={tree.numPlanted} user={tree.user} location={tree.location} date={tree.createdAt} img={`data:image/${tree.image.contentType};base64,${base64string}`} />
         })}
         </ul>
       </Col>
+      {/* img={`data:image/${tree.image.contentType};base64,${base64string}`} */}
     </Container>
   )
 }
