@@ -23,9 +23,11 @@ export const UpdateTree = (props) => {
       setObservations("")
       setFile({ selectedFile: null })
       console.log("Update data sent")
+      props.closeUpdate()
     })
     .catch(error => {
       console.log("Error with updating tree", error)
+      props.closeUpdate()
     })
   }
 

@@ -12,7 +12,9 @@ function App() {
   
   return (
     <div className="App">
-      <img className='App-logo' src={logo} style={{height:'70px'}} alt='' />
+      <div className='App-upper-block'>
+        <img className='App-logo' src={logo} style={{height:'70px'}} alt='' />
+      </div>
       <BottomNav />
       <Routes>
         <Route path='/login' element={<Login />} />

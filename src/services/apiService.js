@@ -7,6 +7,12 @@ const getAll = () => {
   return request.then(response => response.data)
 }
 
+const getUpdates = (id) => {
+  console.log(`Path: ${baseUrl}/${id}/getupdates`)
+  const req = axios.get(`${baseUrl}/getupdates/${id}`)
+  return req.then(response => response.data)
+}
+
 const getOne = (id) => {
   const request = axios.get(`${baseUrl}/${id}`)
   return request.then(response => response.data)
@@ -44,4 +50,4 @@ const update = (id, newObj) => {
   return request
 }
 
-export default { getAll, getOne, add, addUpdate, deletePerson, update }
+export default { getAll, getUpdates, getOne, add, addUpdate, deletePerson, update }

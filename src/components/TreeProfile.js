@@ -4,11 +4,14 @@ import apiService from "../services/apiService"
 import { useEffect, useState } from "react"
 import Spinner from 'react-bootstrap/Spinner';
 import { UpdateTree } from "./UpdateTree";
+import { TreeUpdate } from "./TreeUpdate";
+import "../styles/TreeProfile.css"
 
 const GOOGLE_API_KEY = process.env.REACT_APP_GOOGLE_API_KEY
 
 export const TreeProfile = (props) => {
   const [tree, setTree] = useState(null)
+  const [treeUpdates, setTreeUpdates] = useState(null)
   const [updating, setUpdating] = useState(false)
   const [zoom, setZoom] = useState("12")
   const [location, setLocation] = useState({latitude: "", longitude: ""})
@@ -21,6 +24,10 @@ export const TreeProfile = (props) => {
       console.log("data", t)
       setTree(t)
       setLocation({latitude: t.location.latitude, longitude: t.location.longitude})
+      })
+    apiService.getUpdates(id).then(tu => {
+      console.log("tu", tu)
+      setTreeUpdates(tu)
     })
   }, [])
   
@@ -29,8 +36,15 @@ export const TreeProfile = (props) => {
     setZoom(event.target.value)
   }
   const openUpdate = (event) => {
-    console.log(event.target.value)
     setUpdating(true)
+  }
+
+  const closeUpdate = (event) => {
+    setUpdating(false)
+    apiService.getUpdates(id).then(tu => {
+      console.log("tu", tu)
+      setTreeUpdates(tu)
+    })
   }
 
   const _arrayBufferToBase64 = ( buffer ) => {
@@ -43,8 +57,10 @@ export const TreeProfile = (props) => {
     return window.btoa( binary );
   }
 
+  console.log("treeUpdates", treeUpdates)
 
-  if (tree) {
+
+  if (tree && treeUpdates) {
     return (
       <Container className="treeprofile-page">
         <div>
@@ -62,11 +78,17 @@ export const TreeProfile = (props) => {
 
       {
         updating === true ?
-        <UpdateTree treeId={id} treeName={tree.name} user={"unnamed"} />
+        <UpdateTree closeUpdate={closeUpdate} treeId={id} treeName={tree.name} user={"unnamed"} />
         :
         null
       }
 
+      <h2>Updates</h2>
+      {
+        treeUpdates.map((treeUpdate, index) => {
+          return <TreeUpdate key={index} user={treeUpdate.user} text={treeUpdate.text} img={`data:image/${treeUpdate.image.contentType};base64,${_arrayBufferToBase64(treeUpdate.image.data.data)}`} date={treeUpdate.createdAt} />
+        })
+      }
         
       </Container>
     )
