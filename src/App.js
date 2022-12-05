@@ -9,6 +9,7 @@ import { TreeProfile } from './components/TreeProfile';
 import { Home } from './components/Home';
 import { TopNav } from './components/TopNav';
 import { useEffect, useState } from 'react';
+import { UserProfile } from './components/UserProfile';
 
 function App() {
   const [user, setUser] = useState(null)
@@ -34,6 +35,7 @@ function App() {
         <Route path='/treeregister' element={<TreeRegister />} />
         <Route path='/treelist/:id' element={<TreeProfile />} />
         <Route path='/treelist' element={<TreeList />} />
+        <Route path='/userprofile' element={<UserProfile />} />
       </Routes>
     </div>
   );

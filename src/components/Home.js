@@ -31,21 +31,37 @@ export const Home = () => {
     }, 500)
   }
 
+  const handleLogout = (event) => {
+    localStorage.clear()
+    setUser(null)
+  }
+
   return (
     <Container>
       <TopNav user={user} />
-      <div className="d-grid gap-2 col-6 mx-auto">
-      <MDBBtn onClick={handleLogin} className="btn-success btn-lg">Sign in</MDBBtn>
-      <MDBBtn onClick={handleRegister} className="btn-secondary btn-sm">Register</MDBBtn>
-    </div>
-    <div className="divider align-items-center my-4">
-      <p className="text-center fw-bold mx-3 mb-0">OR</p>
-    </div>
-    <div>
-      <MDBBtn href="/treeregister" outline className='mx-2' color='secondary'>
-        Continue without signing in
-      </MDBBtn>
-    </div>
+      {
+        user ?
+        <div>
+        <h1>You're logged in as {user.userName}</h1>
+        <MDBBtn onClick={handleLogout} href="/" size='lg' className='me-2 btn-danger topnav-logout' active>Log out</MDBBtn>
+        </div>
+        :
+        <div>
+        <div className="d-grid gap-2 col-6 mx-auto">
+        <MDBBtn onClick={handleLogin} className="btn-success btn-lg">Sign in</MDBBtn>
+        <MDBBtn onClick={handleRegister} className="btn-secondary btn-sm">Register</MDBBtn>
+        </div>
+        <div className="divider align-items-center my-4">
+          <p className="text-center fw-bold mx-3 mb-0">OR</p>
+        </div>
+        <div>
+          <MDBBtn href="/treeregister" outline className='mx-2' color='secondary'>
+            Continue without signing in
+          </MDBBtn>
+        </div>
+        </div>
+      }
+      
     </Container>
   )
 }

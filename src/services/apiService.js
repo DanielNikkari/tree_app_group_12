@@ -1,7 +1,7 @@
 import axios from "axios"
 
-const baseUrl = "/api/trees"
-// const baseUrl = "http://localhost:8080/api/trees"
+// const baseUrl = "/api/trees"
+const baseUrl = "http://localhost:8080/api/trees"
 
 const getAll = () => {
   const request =  axios.get(baseUrl)
@@ -16,6 +16,11 @@ const getUpdates = (id) => {
 
 const getOne = (id) => {
   const request = axios.get(`${baseUrl}/${id}`)
+  return request.then(response => response.data)
+}
+
+const getAllWithId = (id) => {
+  const request = axios.get(`${baseUrl}/userProfile/${id}`)
   return request.then(response => response.data)
 }
 
@@ -60,4 +65,4 @@ const update = (id, newObj) => {
   return request
 }
 
-export default { getAll, getUpdates, getOne, add, addUpdate, addUser, signinUser, getSession, deletePerson, update }
+export default { getAll, getUpdates, getAllWithId, getOne, add, addUpdate, addUser, signinUser, getSession, deletePerson, update }

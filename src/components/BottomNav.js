@@ -32,10 +32,10 @@ export const BottomNav = () => {
         }
         </li>
         <li className="nav-item m-3 me-lg-0">
-        { pathname === "/profile" ?
-          <a href="/" className="navbar-brand" ><i className="fa fa-lg fa-user" style={{color: 'green'}}></i></a>
+        { pathname === "/userprofile" ?
+          <a href="/userprofile" className="navbar-brand" ><i className="fa fa-lg fa-user" style={{color: 'green'}}></i></a>
           :
-          <a href="/" className="navbar-brand" ><i className="fa fa-lg fa-user" style={{color: 'grey'}}></i></a>
+          <a href="/userprofile" className="navbar-brand" ><i className="fa fa-lg fa-user" style={{color: 'grey'}}></i></a>
         }
         </li>
         </ul>
