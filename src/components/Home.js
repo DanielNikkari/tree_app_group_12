@@ -1,10 +1,23 @@
 import { Container } from "react-bootstrap"
 import { MDBBtn } from 'mdb-react-ui-kit'
 import { useNavigate } from 'react-router-dom'
+import { useState, useEffect } from "react"
+import { TopNav } from "./TopNav"
 
 export const Home = () => {
 
   const navigate = useNavigate()
+
+  const [user, setUser] = useState(null)
+
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("user");
+    if (loggedInUser) {
+      const foundUser = JSON.parse(loggedInUser);
+      console.log(foundUser)
+      setUser(foundUser);
+    }
+  }, [])
 
   const handleLogin = (event) => {
     setTimeout(() => {
@@ -20,6 +33,7 @@ export const Home = () => {
 
   return (
     <Container>
+      <TopNav user={user} />
       <div className="d-grid gap-2 col-6 mx-auto">
       <MDBBtn onClick={handleLogin} className="btn-success btn-lg">Sign in</MDBBtn>
       <MDBBtn onClick={handleRegister} className="btn-secondary btn-sm">Register</MDBBtn>

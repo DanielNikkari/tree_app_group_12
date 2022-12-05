@@ -4,10 +4,12 @@ import file from "../images/test_img.jpg"
 import { MDBInput } from "mdb-react-ui-kit"
 import { TreeCard } from "./TreeCard"
 import apiService from "../services/apiService"
+import { TopNav } from "./TopNav";
 
 export const TreeList = () => {
   const [searchValue, setSearchValue] = useState("")
   const [treeList, setTreeList] = useState([])
+  const [user, setUser] = useState(null)
 
   console.log("Called TreeList")
 
@@ -60,6 +62,12 @@ export const TreeList = () => {
       console.log(data.length)
       setTreeList(data)
     })
+    const loggedInUser = localStorage.getItem("user");
+    if (loggedInUser) {
+      const foundUser = JSON.parse(loggedInUser);
+      console.log(foundUser)
+      setUser(foundUser);
+    }
   }, [])
 
     const treesToShow =
@@ -97,6 +105,7 @@ export const TreeList = () => {
 
   return(
     <Container>
+      <TopNav user={user} />
       <Col>
       <MDBInput value={searchValue} wrapperClass='mb-4 m-3' label='search' id='' type='text' size="" onChange={handleSearch} />
  

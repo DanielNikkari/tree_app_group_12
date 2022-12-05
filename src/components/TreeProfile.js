@@ -6,6 +6,8 @@ import Spinner from 'react-bootstrap/Spinner';
 import { UpdateTree } from "./UpdateTree";
 import { TreeUpdate } from "./TreeUpdate";
 import "../styles/TreeProfile.css"
+import { TopNav } from "./TopNav";
+
 
 const GOOGLE_API_KEY = process.env.REACT_APP_GOOGLE_API_KEY
 
@@ -15,6 +17,7 @@ export const TreeProfile = (props) => {
   const [updating, setUpdating] = useState(false)
   const [zoom, setZoom] = useState("12")
   const [location, setLocation] = useState({latitude: "", longitude: ""})
+  const [user, setUser] = useState(null)
 
   let { id } = useParams()
 
@@ -29,6 +32,12 @@ export const TreeProfile = (props) => {
       console.log("tu", tu)
       setTreeUpdates(tu)
     })
+    const loggedInUser = localStorage.getItem("user");
+    if (loggedInUser) {
+      const foundUser = JSON.parse(loggedInUser);
+      console.log(foundUser)
+      setUser(foundUser);
+    }
   }, [])
   
   const handleZoomChange2 = (event) => {
@@ -63,6 +72,7 @@ export const TreeProfile = (props) => {
   if (tree && treeUpdates) {
     return (
       <Container className="treeprofile-page">
+        <TopNav user={user} />
         <div>
           <img style={{height: '200px', width: '300px'}} src={`data:image/${tree.image.contentType};base64,${_arrayBufferToBase64(tree.image.data.data)}`} alt='' />
           <h1>{tree.name}</h1>

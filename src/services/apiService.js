@@ -1,7 +1,7 @@
 import axios from "axios"
 
-// const baseUrl = "/api/trees"
-const baseUrl = "http://localhost:8080/api/trees"
+const baseUrl = "/api/trees"
+// const baseUrl = "http://localhost:8080/api/trees"
 
 const getAll = () => {
   const request =  axios.get(baseUrl)
@@ -18,10 +18,6 @@ const getOne = (id) => {
   const request = axios.get(`${baseUrl}/${id}`)
   return request.then(response => response.data)
 }
-
-// const add = (newObj) => {
-//   return axios.post(baseUrl, newObj)
-// }
 
 const add = (formData) => {
   return axios({

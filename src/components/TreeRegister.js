@@ -7,6 +7,7 @@ import Spinner from 'react-bootstrap/Spinner';
 import { MDBInput } from "mdb-react-ui-kit";
 import apiService from "../services/apiService";
 import { Notification } from "./Notifications";
+import { TopNav } from "./TopNav";
 
 const GOOGLE_API_KEY = process.env.REACT_APP_GOOGLE_API_KEY
 
@@ -151,6 +152,7 @@ export const TreeRegister = (props) => {
 
   return (
     <Container className="treeregister-page">
+      <TopNav user={user} />
       <Row>
       <Col>
       <Notification message={message} error={error} />

@@ -1,6 +1,6 @@
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import {
   MDBContainer,
   MDBCol,
@@ -14,10 +14,11 @@ import {
 }
 from 'mdb-react-ui-kit'
 import logo from "../images/logo/logo.svg"
-import { Col, Form, Row } from 'react-bootstrap';
+import { Col, Container, Form, Row } from 'react-bootstrap';
 import { Notification } from './Notifications';
 import apiService from '../services/apiService';
 import { useNavigate } from 'react-router-dom';
+import { TopNav } from './TopNav';
 
 export const Register = (props) => {
   const [firstName, setFirstName] = useState("")
@@ -28,8 +29,18 @@ export const Register = (props) => {
   const [popup, setPopup] = useState(false)
   const [error, setError] = useState(false)
   const [message, setMessage] = useState(null)
+  const [user, setUser] = useState(null)
 
   const navigate = useNavigate()
+
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("user");
+    if (loggedInUser) {
+      const foundUser = JSON.parse(loggedInUser);
+      console.log(foundUser)
+      setUser(foundUser);
+    }
+  }, [])
 
   const handleRegistering = (event) => {
     event.preventDefault()
@@ -95,6 +106,8 @@ export const Register = (props) => {
   }
 
   return (
+    <Container>
+      <TopNav user={user} />
     <MDBContainer fluid className="p-3 my-5">
       <MDBRow>
 
@@ -143,5 +156,6 @@ export const Register = (props) => {
         </MDBCol>
       </MDBRow>
     </MDBContainer>
+    </Container>
   )
 }

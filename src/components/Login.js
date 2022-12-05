@@ -1,6 +1,6 @@
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import {
   MDBContainer,
   MDBCol,
@@ -15,6 +15,8 @@ import logo from "../images/logo/logo.svg"
 import apiService from '../services/apiService';
 import { Notification } from './Notifications';
 import { useNavigate } from 'react-router-dom';
+import { TopNav } from './TopNav';
+import { Container } from 'react-bootstrap';
 
 export const Login = () => {
   const [email, setEmail] = useState("")
@@ -25,6 +27,15 @@ export const Login = () => {
   const [user, setUser] = useState(null)
 
   const navigate = useNavigate()
+
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("user");
+    if (loggedInUser) {
+      const foundUser = JSON.parse(loggedInUser);
+      console.log(foundUser)
+      setUser(foundUser);
+    }
+  }, [])
 
   const signIn = (event) => {
     event.preventDefault()
@@ -42,6 +53,7 @@ export const Login = () => {
       setTimeout(() => {
         setMessage(null)
         setPopup(false)
+        redirectUser()
       }, 1000)
     })
     .catch((err) => {
@@ -64,7 +76,7 @@ export const Login = () => {
         } else {
         console.log(err)
         setPopup(true)
-        setMessage("Email or password is wrong")
+        setMessage("Something went wrong")
         setError(true)
         setTimeout(() => {
           setMessage(null)
@@ -72,7 +84,6 @@ export const Login = () => {
         }, 3000)
       }
     })
-    redirectUser()
   }
 
   const redirectUser = () => {
@@ -88,6 +99,8 @@ export const Login = () => {
   }
 
   return (
+    <Container>
+      <TopNav user={user} />
     <MDBContainer fluid className="p-3 my-5">
       {
         popup === true ?
@@ -122,5 +135,6 @@ export const Login = () => {
         </MDBCol>
       </MDBRow>
     </MDBContainer>
+    </Container>
   )
 }
