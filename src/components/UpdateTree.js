@@ -1,5 +1,5 @@
 import { Container, Form } from "react-bootstrap"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { MDBTextArea } from "mdb-react-ui-kit"
 import apiService from "../services/apiService"
 import { useParams } from "react-router"
@@ -8,6 +8,16 @@ export const UpdateTree = (props) => {
 
   const [file, setFile] = useState({ selectedFile: null })
   const [observations, setObservations] = useState("")
+  const [user, setUser] = useState(null)
+
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("user");
+    if (loggedInUser) {
+      const foundUser = JSON.parse(loggedInUser);
+      console.log(foundUser)
+      setUser(foundUser);
+    }
+  }, [])
 
   let { id } = useParams()
 
@@ -15,9 +25,15 @@ export const UpdateTree = (props) => {
     event.preventDefault()
     let bodyFormData = new FormData()
     bodyFormData.append('treeId', id)
-    bodyFormData.append('user', props.user)
     bodyFormData.append('text', observations)
     bodyFormData.append('image', file)
+    if (user) {
+      bodyFormData.append('userId', user.userId)
+      bodyFormData.append('userName', user.userName)
+    } else {
+      bodyFormData.append('userId', "")
+      bodyFormData.append('userName', "Unnamed")
+    }
 
     apiService.addUpdate(bodyFormData, id).then(response => {
       setObservations("")

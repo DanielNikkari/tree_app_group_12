@@ -66,6 +66,7 @@ export const TreeProfile = (props) => {
         <div>
           <img style={{height: '200px', width: '300px'}} src={`data:image/${tree.image.contentType};base64,${_arrayBufferToBase64(tree.image.data.data)}`} alt='' />
           <h1>{tree.name}</h1>
+          <h3>Number planted {tree.numberPlanted}</h3>
           <h3>Planted on {new Date(tree.createdAt).toDateString()}</h3>
           <h3>Planted by {tree.user}</h3>
           </div>

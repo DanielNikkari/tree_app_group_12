@@ -5,18 +5,30 @@ import { Login } from './components/Login';
 import { Register } from './components/Register';
 import { BottomNav } from './components/BottomNav';
 import { TreeList } from './components/TreeList';
-import logo from './images/logo/logo.svg'
 import { TreeProfile } from './components/TreeProfile';
+import { Home } from './components/Home';
+import { TopNav } from './components/TopNav';
+import { useEffect, useState } from 'react';
 
 function App() {
+  const [user, setUser] = useState(null)
+
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("user");
+    console.log("loggedInUser", JSON.stringify(loggedInUser))
+    if (loggedInUser) {
+      const foundUser = JSON.parse(loggedInUser);
+      console.log(foundUser)
+      setUser(foundUser);
+    }
+  }, []);
   
   return (
     <div className="App">
-      <div className='App-upper-block'>
-        <img className='App-logo' src={logo} style={{height:'70px'}} alt='' />
-      </div>
       <BottomNav />
+      <TopNav user={user} />
       <Routes>
+        <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
         <Route path='/treeregister' element={<TreeRegister />} />

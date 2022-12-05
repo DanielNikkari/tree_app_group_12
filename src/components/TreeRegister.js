@@ -20,8 +20,16 @@ export const TreeRegister = (props) => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
   const [message, setMessage] = useState(null)
+  const [user, setUser] = useState(null)
 
-  console.log("Called TreeRegister")
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("user");
+    if (loggedInUser) {
+      const foundUser = JSON.parse(loggedInUser);
+      console.log(foundUser)
+      setUser(foundUser);
+    }
+  }, [])
 
   const addTree = (event) => {
     event.preventDefault()
@@ -43,6 +51,13 @@ export const TreeRegister = (props) => {
     bodyFormData.append('latitude', location.latitude)
     bodyFormData.append('longitude', location.longitude)
     bodyFormData.append('image', file)
+    if (user) {
+      bodyFormData.append('userId', user.userId)
+      bodyFormData.append('userName', user.userName)
+    } else {
+      bodyFormData.append('userId', "")
+      bodyFormData.append('userName', "Unnamed")
+    }
 
     apiService.add(bodyFormData).then(response => {
       console.log("tree data added succesfully!")
@@ -60,6 +75,11 @@ export const TreeRegister = (props) => {
     })
     .catch((error) => {
       console.log("Error:", error)
+      setMessage("Lost connection to server, try again later")
+      setError(true)
+      setTimeout(() => {
+        setMessage(null)
+      }, 3000)
     })
   }
 
@@ -134,7 +154,6 @@ export const TreeRegister = (props) => {
       <Row>
       <Col>
       <Notification message={message} error={error} />
-      <h3>Logged in as John Doe</h3>
       <Form onSubmit={addTree}>
         <Form.Group className="mb-3" controlId="formBasicInfo">
           {/* <input value={newTree} placeholder="Species" onChange={handleTreeChange} /> */}

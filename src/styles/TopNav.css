@@ -1,0 +1,47 @@
+.App-upper-block {
+  z-index: 1000;
+  width: 100%;
+  height: 100px;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+  position: absolute;
+  left: 5vmin;
+  top: 2vmin;
+  z-index: 1100;
+  height:70px;
+}
+
+.sign-in-topnav {
+  position: absolute;
+  right: 5vmin;
+  top: 3vmin;
+}
+
+.sign-in-status-container {
+  position: absolute;
+  right: 5vmin;
+  width: 300px;
+  top: 3vmin;
+}
+
+.sign-in-status {
+  float: left;
+  vertical-align: middle;
+  padding-top: 10px;
+}
+
+/* .sign-in-status {
+  position: absolute;
+  right: 5vmin;
+  top: 4vmin;
+  font-size: 18px;
+}
+
+.topnav-logout {
+  position: absolute;
+  right: 40vmin;
+  top: 3vmin;
+} */

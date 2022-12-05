@@ -104,7 +104,7 @@ export const TreeList = () => {
         {treesToShow.map((tree, index) => {
           // const base64string = btoa(String.fromCharCode(...new Uint8Array(tree.image.data.data)).reduce((data, byte) => data + String.fromCharCode(byte), ''))
           const base64string = _arrayBufferToBase64(tree.image.data.data)
-          return <TreeCard key={index} id={tree.id} name={tree.name} numPlanted={tree.numPlanted} user={tree.user} location={tree.location} date={tree.createdAt} img={`data:image/${tree.image.contentType};base64,${base64string}`} />
+          return <TreeCard key={index} id={tree.id} name={tree.name} numPlanted={tree.numberPlanted} user={tree.user} location={tree.location} date={tree.createdAt} img={`data:image/${tree.image.contentType};base64,${base64string}`} />
         })}
         </ul>
       </Col>

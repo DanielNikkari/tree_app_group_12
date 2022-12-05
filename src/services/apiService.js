@@ -1,4 +1,5 @@
 import axios from "axios"
+
 // const baseUrl = "/api/trees"
 const baseUrl = "http://localhost:8080/api/trees"
 
@@ -41,6 +42,19 @@ const addUpdate = (formData, id) => {
   })
 }
 
+const addUser = (newObj) => {
+  return axios.post(`${baseUrl}/registeruser`, newObj)
+}
+
+const signinUser = (obj) => {
+  return axios.post(`${baseUrl}/login`, obj)
+}
+
+const getSession = () => {
+  const request = axios.get(`${baseUrl}/session`)
+  return request.then(response => response.data)
+}
+
 const deletePerson = (id) => {
   return axios.delete(`${baseUrl}/${id}`)
 }
@@ -50,4 +64,4 @@ const update = (id, newObj) => {
   return request
 }
 
-export default { getAll, getUpdates, getOne, add, addUpdate, deletePerson, update }
+export default { getAll, getUpdates, getOne, add, addUpdate, addUser, signinUser, getSession, deletePerson, update }
