@@ -59,7 +59,6 @@ export const UserProfile = (props) => {
       <MDBTableBody>
         {userTrees.map((tree, index) => {
           totalTreesPlanted += Number(tree.numberPlanted)
-          console.log("totalTreesPlanted", totalTreesPlanted)
           return (<tr key={index}>
           <td>
             <div className='d-flex align-items-center'>

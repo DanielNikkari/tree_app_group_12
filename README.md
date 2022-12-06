@@ -1,3 +1,18 @@
+# Git workflow
+
+Ohjeet koodaamiseen:
+1 kato onko pull requesteja ja jos on 1) käy kommentoimassa/hyväksymässä; 2) kato ettet muokkaa filuja mitä siinä muokataan jos niitä ei vielä mergattu
+2 git checkout develop
+3 git pull
+4 git checkout -b <omanimi-feature>
+5 koodaa osa featurea
+6 git add <tiedosto1 tiedosto2 ...>
+7 git commit -m 'kommentti muutoksista'
+8 jos työtä jäljellä, palaa takaisin kohtaan 5; jos ei, mene kohtaan 9
+9 git push origin <omanimi-feature>
+10 tee uus merge requesti pushin antamasta linkistä: muista laittaa oikeat branchit (<omanimi-feature> -> develop) vasemmasta yläkulmasta!
+11 jos koodaat lisää, hyppää kohtaan 1
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
