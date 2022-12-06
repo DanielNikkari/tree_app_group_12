@@ -18,6 +18,7 @@
   position: absolute;
   right: 5vmin;
   top: 3vmin;
+  
 }
 
 .sign-in-status-container {
@@ -31,7 +32,9 @@
   float: left;
   vertical-align: middle;
   padding-top: 10px;
+
 }
+
 
 /* .sign-in-status {
   position: absolute;

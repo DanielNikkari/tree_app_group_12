@@ -4,7 +4,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.css';
 import Spinner from 'react-bootstrap/Spinner';
-import { MDBInput } from "mdb-react-ui-kit";
+import { MDBInput, MDBBtn } from "mdb-react-ui-kit";
 import apiService from "../services/apiService";
 import { Notification } from "./Notifications";
 import { TopNav } from "./TopNav";
@@ -198,7 +198,7 @@ export const TreeRegister = (props) => {
         </Form.Group>
 
         <div>
-          <button className="btn btn-primary" type="submit">Submit</button>
+          <MDBBtn rounded id="rgstr-submit" className="btn btn-primary" type="submit">Submit</MDBBtn>
         </div>
       </Form>
       </Col>

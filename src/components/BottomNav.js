@@ -1,10 +1,14 @@
 import { Container } from "react-bootstrap"
 import 'bootstrap/dist/css/bootstrap.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import homeIcon from "../images/icons/Vector.svg"
 import '@fortawesome/free-solid-svg-icons'
 
 export const BottomNav = () => {
   const pathname = window.location.pathname
+
+  // {/* <a href="/" className="navbar-brand" ><i className="fa fa-lg fa-home" style={{color: 'grey'}}></i></a> */}
+  // {/* <a href="/" className="navbar-brand" ><i className="fa fa-lg fa-home" style={{color: 'green'}}></i></a> */}
 
   return (
     <Container>
@@ -12,9 +16,11 @@ export const BottomNav = () => {
         <ul className="navbar-nav d-flex flex-row me-0 justify-content-between w-100">
         <li className="nav-item m-3 me-lg-0">
           { pathname === "/" ?
-            <a href="/" className="navbar-brand" ><i className="fa fa-lg fa-home" style={{color: 'green'}}></i></a>
+          <div>
+            <a href="/" className="navbar-brand"><img src={homeIcon} alt='' /></a>
+            </div>
             :
-            <a href="/" className="navbar-brand" ><i className="fa fa-lg fa-home" style={{color: 'grey'}}></i></a>
+            <a href="/" className="navbar-brand"><img src={homeIcon} style={{color: 'blue'}} alt='' /></a>
           }
         </li>
         <li className="nav-item m-3 me-lg-0">
