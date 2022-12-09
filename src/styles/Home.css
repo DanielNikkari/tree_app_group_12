@@ -1,0 +1,20 @@
+
+
+#log-out{
+    position: relative;
+    top: 4vmin;
+    background-color: #71816D !important;
+}
+#sign-in{
+    background-color: #DC965A !important;
+    color: #FEFFF0 !important;
+}
+#register{
+    size: 10px !important;
+    background-color: #5B8C5A !important;
+    color: #FEFFF0 !important;
+}
+#cont{
+    background-color: #FFFFFF !important;
+    color: #5B8C5A !important;
+}

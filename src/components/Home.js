@@ -3,6 +3,7 @@ import { MDBBtn } from 'mdb-react-ui-kit'
 import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from "react"
 import { TopNav } from "./TopNav"
+import "../styles/Home.css"
 
 export const Home = () => {
 
@@ -43,19 +44,23 @@ export const Home = () => {
         user ?
         <div>
         <h1>You're logged in as {user.userName}</h1>
-        <MDBBtn onClick={handleLogout} href="/" size='lg' className='me-2 btn-danger topnav-logout' active>Log out</MDBBtn>
+        <MDBBtn rounded id ="log-out" onClick={handleLogout} href="/" size='lg' className='me-2 topnav-logout' active>Log out</MDBBtn>
         </div>
         :
         <div>
         <div className="d-grid gap-2 col-6 mx-auto">
-        <MDBBtn onClick={handleLogin} className="btn-success btn-lg">Sign in</MDBBtn>
-        <MDBBtn onClick={handleRegister} className="btn-secondary btn-sm">Register</MDBBtn>
+        <MDBBtn rounded id = "sign-in" onClick={handleLogin} className="btn-primary">
+          Sign in
+
+        </MDBBtn>
+        
+        <MDBBtn rounded id= "register" onClick={handleRegister} className="btn-secondary btn-sm">Register</MDBBtn>
         </div>
         <div className="divider align-items-center my-4">
           <p className="text-center fw-bold mx-3 mb-0">OR</p>
         </div>
         <div>
-          <MDBBtn href="/treeregister" outline className='mx-2' color='secondary'>
+          <MDBBtn rounded id="cont" href="/treeregister" outline className='mx-2' color='secondary'>
             Continue without signing in
           </MDBBtn>
         </div>

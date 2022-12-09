@@ -1,8 +1,15 @@
 import { Container } from "react-bootstrap"
 import 'bootstrap/dist/css/bootstrap.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import homeIcon from "../images/icons/Vector.svg"
-import '@fortawesome/free-solid-svg-icons'
+import homeIcon from "../images/icons/Home.svg"
+import listIcon from "../images/icons/List.svg"
+import homeIcon_light from "../images/icons/Home_light.svg"
+import listIcon_light from "../images/icons/List_light.svg"
+import registerIcon from "../images/icons/Register.svg"
+import registerIcon_light from "../images/icons/Register_light.svg"
+import profileIcon from "../images/icons/Profile.svg"
+import profileIcon_light from "../images/icons/Profile_light.svg"
+
 
 export const BottomNav = () => {
   const pathname = window.location.pathname
@@ -20,28 +27,34 @@ export const BottomNav = () => {
             <a href="/" className="navbar-brand"><img src={homeIcon} alt='' /></a>
             </div>
             :
-            <a href="/" className="navbar-brand"><img src={homeIcon} style={{color: 'blue'}} alt='' /></a>
+            <a href="/" className="navbar-brand"><img src={homeIcon_light} alt='' /></a>
           }
         </li>
         <li className="nav-item m-3 me-lg-0">
         { pathname === "/treeregister" ?
-          <a href="/treeregister" className="navbar-brand" ><i className="fa fa-lg fa-plus" style={{color: 'green'}}></i></a>
+        <div>
+          <a href="/treeregister" className="navbar-brand" ><img src={registerIcon} alt='' /></a>
+          </div>
           :
-          <a href="/treeregister" className="navbar-brand" ><i className="fa fa-lg fa-plus" style={{color: 'grey'}}></i></a>
+          <a href="/treeregister" className="navbar-brand" ><img src={registerIcon_light} alt='' /></a>
         }
         </li>
         <li className="nav-item m-3 me-lg-0">
         { pathname === "/treelist" ?
-          <a href="/treelist" className="navbar-brand" ><i className="fa fa-lg fa-list" style={{color: 'green'}}></i></a>
+          <div>
+          <a href="/treelist" className="navbar-brand"><img src={listIcon} alt='' /></a>
+          </div>
           :
-          <a href="/treelist" className="navbar-brand" ><i className="fa fa-lg fa-list" style={{color: 'grey'}}></i></a>
+          <a href="/treelist" className="navbar-brand"><img src={listIcon_light} alt='' /></a>
         }
         </li>
         <li className="nav-item m-3 me-lg-0">
         { pathname === "/userprofile" ?
-          <a href="/userprofile" className="navbar-brand" ><i className="fa fa-lg fa-user" style={{color: 'green'}}></i></a>
+        <div>
+          <a href="/userprofile" className="navbar-brand" ><img src={profileIcon} alt='' /></a>
+          </div>
           :
-          <a href="/userprofile" className="navbar-brand" ><i className="fa fa-lg fa-user" style={{color: 'grey'}}></i></a>
+          <a href="/userprofile" className="navbar-brand" ><img src={profileIcon_light} alt='' /></a>
         }
         </li>
         </ul>
