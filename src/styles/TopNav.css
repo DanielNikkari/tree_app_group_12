@@ -11,8 +11,8 @@
   color: #0E230A !important;
   font-size: xx-large;
   position: absolute;
-  left: 12vmin !important;
-  top: 4vmin;
+  left: 14vmin;
+  top: 5vmin;
 }
 
 .App-logo {
@@ -35,7 +35,7 @@
 
 .sign-in-status-container {
   position: absolute;
-  right: 5vmin;
+  right: 1vmin;
   width: 300px;
   top: 3vmin;
   
@@ -45,20 +45,33 @@
   float: left;
   vertical-align: middle;
   padding-top: 10px;
-
+  margin-top: 0.4em;
 }
 #rgstr{
   color: #0E230A !important;
   background-color: #E1F0D4 !important;
+  margin-top: 1em;
 }
 #sign-in-btn{
   color: #FEFFF0 !important;
   background-color: #71816D !important;
+  margin-top: 1em;
 }
 
 #logout{
   background-color: #71816D !important;
+  margin-top: 1em;
 }
+
+@media (max-width: 700px) {
+  #myHeader {
+    /* font-size: large;
+    top: 6.5vmin;
+    left: 14vmin; */
+    display: none;
+  }
+}
+
 /* .sign-in-status {
   position: absolute;
   right: 5vmin;

@@ -109,15 +109,13 @@ export const TreeList = () => {
       <Col>
       <MDBInput value={searchValue} wrapperClass='mb-4 m-3' label='search' id='' type='text' size="" onChange={handleSearch} />
  
-        <ul>
+        <ul style={{ 'margin-bottom':'150px', 'padding':'0' }}>
         {treesToShow.map((tree, index) => {
-          // const base64string = btoa(String.fromCharCode(...new Uint8Array(tree.image.data.data)).reduce((data, byte) => data + String.fromCharCode(byte), ''))
           const base64string = _arrayBufferToBase64(tree.image.data.data)
           return <TreeCard key={index} id={tree.id} name={tree.name} numPlanted={tree.numberPlanted} user={tree.user} location={tree.location} date={tree.createdAt} img={`data:image/${tree.image.contentType};base64,${base64string}`} />
         })}
         </ul>
       </Col>
-      {/* img={`data:image/${tree.image.contentType};base64,${base64string}`} */}
     </Container>
   )
 }

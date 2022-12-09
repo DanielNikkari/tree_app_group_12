@@ -1,4 +1,14 @@
 import { Card, Row, Col } from "react-bootstrap"
+import {
+  MDBCard,
+  MDBCardTitle,
+  MDBCardText,
+  MDBCardBody,
+  MDBCardImage,
+  MDBRow,
+  MDBCol
+} from 'mdb-react-ui-kit'
+import "../styles/TreeCard.css"
 
 const GOOGLE_API_KEY = process.env.REACT_APP_GOOGLE_API_KEY
 
@@ -9,7 +19,8 @@ export const TreeCard = (props) => {
   console.log("Called TreeCard")
 
   return (
-    <Row>
+    <div id="tree-card-container">
+    {/* <Row>
       <a href={`/treelist/${props.id}`}>
       <Col className="m-3">
         <img style={{height: '200px', width: '300px'}} src={props.img} alt='' />
@@ -21,6 +32,34 @@ export const TreeCard = (props) => {
         <img src={`https://maps.googleapis.com/maps/api/staticmap?center=${props.location.latitude},${props.location.longitude}&format=gif&zoom=${14}&size=300x100&markers=color:red%7C${props.location.latitude},${props.location.longitude}&key=${GOOGLE_API_KEY}`} alt='' />
       </Col>
       </a>
-    </Row>
+    </Row> */}
+    <MDBCard id="tree-card" className="mx-auto" style={{ maxWidth: '600px', backgroundColor: '#E1F0D4', borderRadius: '1em', marginBottom: '2em' }}>
+    <a href={`/treelist/${props.id}`}>
+    <MDBRow className='g-0'>
+      <MDBCol md='4'>
+        <MDBCardImage id="tree-card-image" src={props.img} alt='...' fluid />
+      </MDBCol>
+      <MDBCol md='8'>
+        <MDBCardBody>
+          <MDBCardTitle id="tree-card-title">{props.name}, {props.numPlanted}</MDBCardTitle>
+          <MDBCardText className="tree-card-info-text">
+            Planted by {props.user}
+          </MDBCardText>
+          <MDBCardText className="tree-card-info-text">
+            Planted on {date.toDateString()}
+          </MDBCardText>
+          <img id="tree-card-google-map" src={`https://maps.googleapis.com/maps/api/staticmap?center=${props.location.latitude},${props.location.longitude}&format=gif&zoom=${12}&size=300x100&markers=color:red%7C${props.location.latitude},${props.location.longitude}&key=${GOOGLE_API_KEY}`} alt='' />
+          <MDBCardText id="tree-card-latitude-text">
+            <small className='text-muted'>Latitude: {props.location.latitude}</small>
+          </MDBCardText>
+          <MDBCardText>
+            <small className='text-muted'>Longitude: {props.location.longitude}</small>
+          </MDBCardText>
+        </MDBCardBody>
+      </MDBCol>
+    </MDBRow>
+    </a>
+  </MDBCard>
+  </div>
   )
 }

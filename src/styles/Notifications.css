@@ -4,7 +4,7 @@
   position:fixed; 
   top: calc(50% - 25px);
   left: calc(50% - 50px);
-  background-color: green;
+  background-color: #5B8C5A;
   color: white;
   border-radius: 15px;
   padding: 20px;
@@ -25,7 +25,7 @@
   position:fixed; 
   top: calc(50% - 25px);
   left: calc(50% - 50px);
-  background-color: red;
+  background-color: #CF6565;
   color: white;
   border-radius: 15px;
   padding: 20px;

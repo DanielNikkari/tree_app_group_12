@@ -26,14 +26,14 @@ export const TopNav = (props) => {
         props.user ?
         <div className="sign-in-status-container">
           <p className="sign-in-status">Signed in as {props.user.userName}</p>
-          <MDBBtn rounded id="logout" onClick={handleLogout} href="/" size='lg' className='me-2 topnav-logout' active>Log out</MDBBtn>
+          <MDBBtn rounded id="logout" onClick={handleLogout} href="/" size='' className='me-2 topnav-logout' active>Log out</MDBBtn>
         </div>
         :
         <div className="sign-in-topnav">
-        <MDBBtn rounded id= "sign-in-btn" href="/login" size='lg' className='me-2 btn-success' active>
+        <MDBBtn rounded id= "sign-in-btn" href="/login" size='' className='me-2 btn-success' active>
           Sign in
         </MDBBtn>
-        <MDBBtn rounded id= "rgstr" href="/register" size='lg' tag='a' color='secondary' active>
+        <MDBBtn rounded id= "rgstr" href="/register" size='' tag='a' color='secondary' active>
           Register
         </MDBBtn>
         </div>

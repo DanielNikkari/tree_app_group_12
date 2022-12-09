@@ -185,7 +185,7 @@ export const TreeRegister = (props) => {
           {/* <input value={location.latitude} placeholder="Latitude" onChange={handleLatitudeChange} /> */}
           {/* <input value={location.longitude} placeholder="Longitude" onChange={handleLongitudeChange} /> */}
         </div>
-          <MDBBtn rounded id="gt-location" className="btn btn-primary" type="button" onClick={getLocation}>Get Location</MDBBtn>
+          <button className="btn btn-primary" type="button" onClick={getLocation}>Get Location</button>
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formInputFile">
@@ -198,7 +198,7 @@ export const TreeRegister = (props) => {
         </Form.Group>
 
         <div>
-          <MDBBtn rounded id="rgstr-submit" className="btn btn-primary" type="submit">Submit</MDBBtn>
+          <button className="btn btn-primary" type="submit">Submit</button>
         </div>
       </Form>
       </Col>
