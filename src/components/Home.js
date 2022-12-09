@@ -38,7 +38,7 @@ export const Home = () => {
   }
 
   return (
-    <Container>
+    <Container className="Home-view">
       <TopNav user={user} />
       {
         user ?

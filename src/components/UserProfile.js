@@ -53,6 +53,7 @@ export const UserProfile = (props) => {
           <th scope='col'>Location</th>
           <th scope='col'>Number planted</th>
           <th scope='col'>Planted on</th>
+          <th scope='col'>Link</th>
           {/* <th scope='col'>Actions</th> */}
         </tr>
       </MDBTableHead>

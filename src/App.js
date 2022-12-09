@@ -10,6 +10,7 @@ import { Home } from './components/Home';
 import { TopNav } from './components/TopNav';
 import { useEffect, useState } from 'react';
 import { UserProfile } from './components/UserProfile';
+import logo from './images/logo/logo.svg'
 
 function App() {
   const [user, setUser] = useState(null)
@@ -26,6 +27,9 @@ function App() {
   
   return (
     <div className="App">
+      <div className='logo-container'>
+        <img src={logo} id="App-logo" alt='logo' />
+      </div>
       <BottomNav />
       {/* <TopNav user={user} /> */}
       <Routes>

@@ -1,7 +1,7 @@
 import axios from "axios"
 
-// const baseUrl = "/api/trees"
-const baseUrl = "http://localhost:8080/api/trees"
+const baseUrl = "/api/trees"
+// const baseUrl = "http://localhost:8080/api/trees"
 
 const getAll = () => {
   const request =  axios.get(baseUrl)
