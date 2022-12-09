@@ -154,7 +154,7 @@ export const TreeRegister = (props) => {
     <Container className="treeregister-page">
       <TopNav user={user} />
       <Row>
-      <Col>
+      <Col id="tree-register-column">
       <Notification message={message} error={error} />
       <Form onSubmit={addTree}>
         <Form.Group className="mb-3" controlId="formBasicInfo">
@@ -168,7 +168,7 @@ export const TreeRegister = (props) => {
         <div className="google-map-code ">
           {
             location.latitude && location.longitude ? 
-            <img src={`https://maps.googleapis.com/maps/api/staticmap?center=${location.latitude},${location.longitude}&format=gif&zoom=${zoom}&size=400x400&markers=color:red%7C${location.latitude},${location.longitude}&key=${GOOGLE_API_KEY}`} alt='' />
+            <img src={`https://maps.googleapis.com/maps/api/staticmap?center=${location.latitude},${location.longitude}&format=gif&zoom=${zoom}&size=350x350&markers=color:red%7C${location.latitude},${location.longitude}&key=${GOOGLE_API_KEY}`} alt='' />
             :
             loading ?
             <Spinner animation="border" variant="primary" />
