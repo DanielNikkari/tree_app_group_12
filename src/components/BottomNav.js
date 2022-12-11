@@ -1,14 +1,14 @@
 import { Container } from "react-bootstrap"
 import 'bootstrap/dist/css/bootstrap.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import homeIcon from "../images/icons/Home.svg"
-import listIcon from "../images/icons/List.svg"
-import homeIcon_light from "../images/icons/Home_light.svg"
-import listIcon_light from "../images/icons/List_light.svg"
-import registerIcon from "../images/icons/Register.svg"
-import registerIcon_light from "../images/icons/Register_light.svg"
-import profileIcon from "../images/icons/Profile.svg"
-import profileIcon_light from "../images/icons/Profile_light.svg"
+import homeIcon from "../images/icons/Home2.svg"
+import listIcon from "../images/icons/List2.svg"
+import homeIcon_light from "../images/icons/Home_light2.svg"
+import listIcon_light from "../images/icons/List_light2.svg"
+import registerIcon from "../images/icons/Register2.svg"
+import registerIcon_light from "../images/icons/Register_light2.svg"
+import profileIcon from "../images/icons/Profile2.svg"
+import profileIcon_light from "../images/icons/Profile_light2.svg"
 
 
 export const BottomNav = () => {
@@ -24,37 +24,37 @@ export const BottomNav = () => {
         <li className="nav-item m-3 me-lg-0">
           { pathname === "/" ?
           <div>
-            <a href="/" className="navbar-brand"><img src={homeIcon} alt='' /></a>
+            <a href="/" className="navbar-brand"><img style={{ height:'60px' }} src={homeIcon} alt='' /></a>
             </div>
             :
-            <a href="/" className="navbar-brand"><img src={homeIcon_light} alt='' /></a>
+            <a href="/" className="navbar-brand"><img style={{ height:'60px' }} src={homeIcon_light} alt='' /></a>
           }
         </li>
         <li className="nav-item m-3 me-lg-0">
         { pathname === "/treeregister" ?
         <div>
-          <a href="/treeregister" className="navbar-brand" ><img src={registerIcon} alt='' /></a>
+          <a href="/treeregister" className="navbar-brand" ><img style={{ height:'60px' }} src={registerIcon} alt='' /></a>
           </div>
           :
-          <a href="/treeregister" className="navbar-brand" ><img src={registerIcon_light} alt='' /></a>
+          <a href="/treeregister" className="navbar-brand" ><img style={{ height:'60px' }} src={registerIcon_light} alt='' /></a>
         }
         </li>
         <li className="nav-item m-3 me-lg-0">
-        { pathname === "/treelist" ?
+        { pathname.includes("/treelist") ?
           <div>
-          <a href="/treelist" className="navbar-brand"><img src={listIcon} alt='' /></a>
+          <a href="/treelist" className="navbar-brand"><img style={{ height:'60px' }} src={listIcon} alt='' /></a>
           </div>
           :
-          <a href="/treelist" className="navbar-brand"><img src={listIcon_light} alt='' /></a>
+          <a href="/treelist" className="navbar-brand"><img style={{ height:'60px' }} src={listIcon_light} alt='' /></a>
         }
         </li>
         <li className="nav-item m-3 me-lg-0">
         { pathname === "/userprofile" ?
         <div>
-          <a href="/userprofile" className="navbar-brand" ><img src={profileIcon} alt='' /></a>
+          <a href="/userprofile" className="navbar-brand" ><img style={{ height:'60px' }} src={profileIcon} alt='' /></a>
           </div>
           :
-          <a href="/userprofile" className="navbar-brand" ><img src={profileIcon_light} alt='' /></a>
+          <a href="/userprofile" className="navbar-brand" ><img style={{ height:'60px' }} src={profileIcon_light} alt='' /></a>
         }
         </li>
         </ul>

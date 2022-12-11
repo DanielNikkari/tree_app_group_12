@@ -178,7 +178,7 @@ export const TreeRegister = (props) => {
             <img src={`https://maps.googleapis.com/maps/api/staticmap?center=${location.latitude},${location.longitude}&format=gif&zoom=${zoom}&size=350x350&markers=color:red%7C${location.latitude},${location.longitude}&key=${GOOGLE_API_KEY}`} alt='' />
             :
             loading ?
-            <Spinner animation="border" variant="primary" />
+            <Spinner animation="border" variant="secondary" />
             :
             null
           }

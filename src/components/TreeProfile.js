@@ -8,6 +8,7 @@ import { TreeUpdate } from "./TreeUpdate"
 import "../styles/TreeProfile.css"
 import { TopNav } from "./TopNav"
 import { MDBBtn, MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBCardImage } from 'mdb-react-ui-kit'
+import backButton from "../images/icons/back-button.png"
 
 
 const GOOGLE_API_KEY = process.env.REACT_APP_GOOGLE_API_KEY
@@ -74,21 +75,22 @@ export const TreeProfile = (props) => {
     return (
       <Container className="treeprofile-page">
         <TopNav user={user} />
-        <MDBCard className="mx-auto" style={{ maxWidth: '700px', backgroundColor: 'transparent', borderRadius: '1em', marginBottom: '2em' }}>
+        <a href="/treelist" className="d-flex mt-4 mb-3">
+          <img style={{ width: '6em' }} src={backButton} alt='' />
+        </a>
+        <MDBCard className="mx-auto shadow-none" style={{ maxWidth: '700px', backgroundColor: 'transparent', borderRadius: '1em', marginBottom: '2em' }}>
         <MDBCardBody>
         <div>
           {/* <img style={{height: '200px', width: '300px'}} src={`data:image/${tree.image.contentType};base64,${_arrayBufferToBase64(tree.image.data.data)}`} alt='' /> */}
-          <MDBCardImage src={`data:image/${tree.image.contentType};base64,${_arrayBufferToBase64(tree.image.data.data)}`} position='top' />
-          <MDBCardTitle className="text-start">
-          <h1>{tree.name}</h1>
-          </MDBCardTitle>
-          <MDBCardText className="text-start mb-5">
+          <MDBCardImage src={`data:image/${tree.image.contentType};base64,${_arrayBufferToBase64(tree.image.data.data)}`} position='top' style={{ borderRadius: '1em'}} />
+          <h1 className="text-start">{tree.name}</h1>
+          <div className="text-start mb-5">
           <h3>Number planted {tree.numberPlanted}</h3>
           <h3>Planted on {new Date(tree.createdAt).toDateString()}</h3>
           <h3>Planted by {tree.user}</h3>
-          </MDBCardText>
           </div>
-          <img src={`https://maps.googleapis.com/maps/api/staticmap?center=${location.latitude},${location.longitude}&format=gif&zoom=${zoom}&size=300x300&markers=color:red%7C${location.latitude},${location.longitude}&key=${GOOGLE_API_KEY}`} alt='' />
+          </div>
+          <img style={{ borderRadius: '1em'}} src={`https://maps.googleapis.com/maps/api/staticmap?center=${location.latitude},${location.longitude}&format=gif&zoom=${zoom}&size=300x300&markers=color:red%7C${location.latitude},${location.longitude}&key=${GOOGLE_API_KEY}`} alt='' />
         <div>
           <input className="m-3" type="range" min="1" max="16" value={zoom} onChange={handleZoomChange2} />
         </div>
@@ -104,7 +106,7 @@ export const TreeProfile = (props) => {
         null
       }
 
-      <h2 className="mt-4">Updates</h2>
+      <h2 className="mt-5 mb-4 display-4">Updates</h2>
       <ul style={{ 'listStyle':'none', 'marginBottom':'150px', 'padding':'0' }}>
       {
         treeUpdates.map((treeUpdate, index) => {
@@ -117,9 +119,9 @@ export const TreeProfile = (props) => {
     )
   } else {
     return (
-      <Container>
-        <Spinner className="mt-4" animation="border" variant="primary" />
-      </Container>
+      <div style={{ position: 'absolute', top: '30%', left: '50%' }}>
+        <Spinner style={{ width: '4rem', height: '4rem' }} className="mt-4" animation="border" variant="secondary" />
+      </div>
     )
   }
   
