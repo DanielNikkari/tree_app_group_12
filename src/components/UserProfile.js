@@ -93,7 +93,7 @@ export const UserProfile = (props) => {
         })}
       </MDBTableBody>
     </MDBTable>
-    <h3>{totalTreesPlanted} trees planted in total</h3>
+    <h3 style={{ 'marginBottom':'150px' }}>{totalTreesPlanted} trees planted in total</h3>
     </div>
         :
         <h1>Sign in to see your profile page</h1>

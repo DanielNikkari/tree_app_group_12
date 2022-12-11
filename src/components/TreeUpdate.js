@@ -2,8 +2,6 @@ import { Container } from "react-bootstrap"
 import {
   MDBCard,
   MDBCardBody,
-  MDBCardTitle,
-  MDBCardText,
   MDBCardImage,
 } from 'mdb-react-ui-kit'
 
@@ -15,7 +13,7 @@ export const TreeUpdate = (props) => {
       <h2>{props.user}</h2>
       <p>{new Date(props.date).toDateString()}</p>
       <p>{props.text}</p>
-      <MDBCardImage style={{maxWidth: '500px', borderRadius:'1em' }} src={props.img} alt='' />
+      <MDBCardImage style={{ maxWidth: '70%', borderRadius:'1em' }} src={props.img} alt='' />
       </MDBCardBody>
       </MDBCard>
     </li>

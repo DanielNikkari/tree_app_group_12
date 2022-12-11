@@ -60,7 +60,7 @@ export const UpdateTree = (props) => {
 
   return (
     <Container className="update-tree-container">
-      <MDBCard id="update-tree-card">
+      <MDBCard className="mx-auto" id="update-tree-card">
       <MDBCardBody>
       <img id="update-tree-x" onClick={() => props.closeUpdate()} src={xIcon} alt='' />
       <h1>{props.treeName} Update</h1>

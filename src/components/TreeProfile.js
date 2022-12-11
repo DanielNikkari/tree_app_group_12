@@ -119,7 +119,7 @@ export const TreeProfile = (props) => {
     )
   } else {
     return (
-      <div style={{ position: 'absolute', top: '30%', left: '50%' }}>
+      <div style={{ position: 'absolute', top: '35%', left: '50%', transform: 'translate(-50%,-50%)' }}>
         <Spinner style={{ width: '4rem', height: '4rem' }} className="mt-4" animation="border" variant="secondary" />
       </div>
     )
