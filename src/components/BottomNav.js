@@ -1,14 +1,14 @@
 import { Container } from "react-bootstrap"
 import 'bootstrap/dist/css/bootstrap.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import homeIcon from "../images/icons/Home2.svg"
-import listIcon from "../images/icons/List2.svg"
-import homeIcon_light from "../images/icons/Home_light2.svg"
-import listIcon_light from "../images/icons/List_light2.svg"
-import registerIcon from "../images/icons/Register2.svg"
-import registerIcon_light from "../images/icons/Register_light2.svg"
-import profileIcon from "../images/icons/Profile2.svg"
-import profileIcon_light from "../images/icons/Profile_light2.svg"
+import homeIcon from "../images/icons/Home.svg"
+import listIcon from "../images/icons/List.svg"
+import homeIcon_light from "../images/icons/Home_light.svg"
+import listIcon_light from "../images/icons/List_light.svg"
+import registerIcon from "../images/icons/Register.svg"
+import registerIcon_light from "../images/icons/Register_light.svg"
+import profileIcon from "../images/icons/Profile.svg"
+import profileIcon_light from "../images/icons/Profile_light.svg"
 
 
 export const BottomNav = () => {
