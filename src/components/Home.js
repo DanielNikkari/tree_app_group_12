@@ -4,12 +4,15 @@ import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from "react"
 import { TopNav } from "./TopNav"
 import "../styles/Home.css"
+import homeFlair from "../images/icons/homeFlair.svg"
+import apiService from "../services/apiService"
 
 export const Home = () => {
 
   const navigate = useNavigate()
 
   const [user, setUser] = useState(null)
+  const [treesPlanted, setTreesPlanted] = useState(0)
 
   useEffect(() => {
     const loggedInUser = localStorage.getItem("user");
@@ -19,6 +22,20 @@ export const Home = () => {
       setUser(foundUser);
     }
   }, [])
+
+  useEffect(() => {
+    if (user) {
+      console.log(user)
+      apiService.getAllWithId(user.userId).then(trees => {
+        let total = 0
+        trees.map(tree => {
+          total += Number(tree.numberPlanted)
+          return total
+        })
+        setTreesPlanted(total)
+      })
+    }
+  }, [user])
 
   const handleLogin = (event) => {
     setTimeout(() => {
@@ -43,6 +60,18 @@ export const Home = () => {
       {
         user ?
         <div>
+        <div className="d-flex align-items-center justify-content-center mb-5">
+        <img
+          src={homeFlair}
+          alt=''
+          style={{ width: '7em', height: '7em' }}
+          className='rounded-circle'
+        />
+        <div className='ms-2'>
+          <p style={{color: '#71816D'}} className='fw-bold mb-1 display-5'>{treesPlanted} trees planted</p>
+          <p className='text-muted mb-0'>and registered with TreeHugger</p>
+        </div>
+        </div>
         <h1>You're logged in as {user.userName}</h1>
         <MDBBtn rounded id ="log-out" onClick={handleLogout} href="/" size='lg' className='me-2 topnav-logout' active>Log out</MDBBtn>
         </div>
