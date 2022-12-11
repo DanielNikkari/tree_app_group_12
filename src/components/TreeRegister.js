@@ -8,6 +8,7 @@ import { MDBInput, MDBBtn } from "mdb-react-ui-kit";
 import apiService from "../services/apiService";
 import { Notification } from "./Notifications";
 import { TopNav } from "./TopNav";
+import { useNavigate } from 'react-router-dom'
 
 const GOOGLE_API_KEY = process.env.REACT_APP_GOOGLE_API_KEY
 
@@ -22,6 +23,8 @@ export const TreeRegister = (props) => {
   const [error, setError] = useState(false)
   const [message, setMessage] = useState(null)
   const [user, setUser] = useState(null)
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     const loggedInUser = localStorage.getItem("user");
@@ -68,15 +71,19 @@ export const TreeRegister = (props) => {
       setFile({ selectedFile: null })
       setLoading(false)
 
+      console.log("Response ", response)
+
       setMessage("Trees logged succesfully")
       setError(false)
       setTimeout(() => {
         setMessage(null)
-      }, 3000)
+        navigate(`/treelist/${response.data.id}`, { replace: true })
+      }, 2000)
     })
     .catch((error) => {
       console.log("Error:", error)
-      setMessage("Lost connection to server, try again later")
+      // setMessage("Lost connection to server, try again later")
+      setMessage(error.response.data.error)
       setError(true)
       setTimeout(() => {
         setMessage(null)
@@ -185,7 +192,7 @@ export const TreeRegister = (props) => {
           {/* <input value={location.latitude} placeholder="Latitude" onChange={handleLatitudeChange} /> */}
           {/* <input value={location.longitude} placeholder="Longitude" onChange={handleLongitudeChange} /> */}
         </div>
-          <button className="btn btn-primary" type="button" onClick={getLocation}>Get Location</button>
+          <MDBBtn rounded outline className='mx-2' color='secondary' type="button" onClick={getLocation} size='lg' >Get Location</MDBBtn>
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formInputFile">
@@ -198,7 +205,7 @@ export const TreeRegister = (props) => {
         </Form.Group>
 
         <div>
-          <button className="btn btn-primary" type="submit">Submit</button>
+          <MDBBtn style={{ backgroundColor: '#DC965A', color: '#FEFFF0' }} rounded className="btn btn-primary btn-lg" type="submit">Submit</MDBBtn>
         </div>
       </Form>
       </Col>

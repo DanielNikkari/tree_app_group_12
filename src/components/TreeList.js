@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { Col, Container, Form } from "react-bootstrap"
 import file from "../images/test_img.jpg"
-import { MDBInput } from "mdb-react-ui-kit"
+import { MDBInput, MDBSpinner } from "mdb-react-ui-kit"
 import { TreeCard } from "./TreeCard"
 import apiService from "../services/apiService"
 import { TopNav } from "./TopNav";
@@ -108,13 +108,19 @@ export const TreeList = () => {
       <TopNav user={user} />
       <Col>
       <MDBInput value={searchValue} wrapperClass='mb-4 m-3' label='search' id='' type='text' size="" onChange={handleSearch} />
- 
-        <ul style={{ 'margin-bottom':'150px', 'padding':'0' }}>
+      {
+        treeList.length === 0 ?
+        <MDBSpinner className='me-2 mt-5' style={{ width: '3rem', height: '3rem' }}>
+          <span className='visually-hidden'>Loading...</span>
+      </MDBSpinner>
+      :
+      <ul style={{ 'marginBottom':'150px', 'padding':'0' }}>
         {treesToShow.map((tree, index) => {
           const base64string = _arrayBufferToBase64(tree.image.data.data)
           return <TreeCard key={index} id={tree.id} name={tree.name} numPlanted={tree.numberPlanted} user={tree.user} location={tree.location} date={tree.createdAt} img={`data:image/${tree.image.contentType};base64,${base64string}`} />
         })}
         </ul>
+      } 
       </Col>
     </Container>
   )

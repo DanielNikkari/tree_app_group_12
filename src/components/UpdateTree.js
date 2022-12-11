@@ -1,8 +1,10 @@
 import { Container, Form } from "react-bootstrap"
 import { useState, useEffect } from "react"
-import { MDBTextArea } from "mdb-react-ui-kit"
+import { MDBTextArea, MDBCard, MDBCardBody, MDBBtn } from "mdb-react-ui-kit"
 import apiService from "../services/apiService"
 import { useParams } from "react-router"
+import "../styles/UpdateTree.css"
+import xIcon from "../images/icons/x.png"
 
 export const UpdateTree = (props) => {
 
@@ -57,7 +59,10 @@ export const UpdateTree = (props) => {
   }
 
   return (
-    <Container>
+    <Container className="update-tree-container">
+      <MDBCard id="update-tree-card">
+      <MDBCardBody>
+      <img id="update-tree-x" onClick={() => props.closeUpdate()} src={xIcon} alt='' />
       <h1>{props.treeName} Update</h1>
       <Form onSubmit={addUpdate}>
         <Form.Group className="mb-3" controlId="formInputFile">
@@ -78,9 +83,11 @@ export const UpdateTree = (props) => {
         />
         </Form.Group>
         <div>
-          <button className="btn btn-primary" type="submit">Submit</button>
+        <MDBBtn style={{ backgroundColor: '#DC965A', color: '#FEFFF0' }} rounded className="btn btn-secondary mt-3" type="submit">Submit</MDBBtn>
         </div>
       </Form>
+      </MDBCardBody>
+      </MDBCard>
     </Container>
   )
 }

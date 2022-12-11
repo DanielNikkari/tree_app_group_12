@@ -2,11 +2,12 @@ import { Container } from "react-bootstrap"
 import { useParams } from "react-router"
 import apiService from "../services/apiService"
 import { useEffect, useState } from "react"
-import Spinner from 'react-bootstrap/Spinner';
-import { UpdateTree } from "./UpdateTree";
-import { TreeUpdate } from "./TreeUpdate";
+import Spinner from 'react-bootstrap/Spinner'
+import { UpdateTree } from "./UpdateTree"
+import { TreeUpdate } from "./TreeUpdate"
 import "../styles/TreeProfile.css"
-import { TopNav } from "./TopNav";
+import { TopNav } from "./TopNav"
+import { MDBBtn, MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBCardImage } from 'mdb-react-ui-kit'
 
 
 const GOOGLE_API_KEY = process.env.REACT_APP_GOOGLE_API_KEY
@@ -73,19 +74,28 @@ export const TreeProfile = (props) => {
     return (
       <Container className="treeprofile-page">
         <TopNav user={user} />
+        <MDBCard className="mx-auto" style={{ maxWidth: '700px', backgroundColor: 'transparent', borderRadius: '1em', marginBottom: '2em' }}>
+        <MDBCardBody>
         <div>
-          <img style={{height: '200px', width: '300px'}} src={`data:image/${tree.image.contentType};base64,${_arrayBufferToBase64(tree.image.data.data)}`} alt='' />
+          {/* <img style={{height: '200px', width: '300px'}} src={`data:image/${tree.image.contentType};base64,${_arrayBufferToBase64(tree.image.data.data)}`} alt='' /> */}
+          <MDBCardImage src={`data:image/${tree.image.contentType};base64,${_arrayBufferToBase64(tree.image.data.data)}`} position='top' />
+          <MDBCardTitle className="text-start">
           <h1>{tree.name}</h1>
+          </MDBCardTitle>
+          <MDBCardText className="text-start mb-5">
           <h3>Number planted {tree.numberPlanted}</h3>
           <h3>Planted on {new Date(tree.createdAt).toDateString()}</h3>
           <h3>Planted by {tree.user}</h3>
+          </MDBCardText>
           </div>
-        <img src={`https://maps.googleapis.com/maps/api/staticmap?center=${location.latitude},${location.longitude}&format=gif&zoom=${zoom}&size=300x300&markers=color:red%7C${location.latitude},${location.longitude}&key=${GOOGLE_API_KEY}`} alt='' />
+          <img src={`https://maps.googleapis.com/maps/api/staticmap?center=${location.latitude},${location.longitude}&format=gif&zoom=${zoom}&size=300x300&markers=color:red%7C${location.latitude},${location.longitude}&key=${GOOGLE_API_KEY}`} alt='' />
         <div>
           <input className="m-3" type="range" min="1" max="16" value={zoom} onChange={handleZoomChange2} />
         </div>
+        </MDBCardBody>
+        </MDBCard>
   
-        <button type="button" className="btn btn-primary" onClick={openUpdate} >Add update</button>
+        <MDBBtn style={{ backgroundColor: '#DC965A', color: '#FEFFF0' }} rounded type="button" className="btn btn-primary" onClick={openUpdate} >Add update</MDBBtn>
 
       {
         updating === true ?
@@ -94,8 +104,8 @@ export const TreeProfile = (props) => {
         null
       }
 
-      <h2>Updates</h2>
-      <ul style={{ 'listStyle':'none', 'margin-bottom':'150px', 'padding':'0' }}>
+      <h2 className="mt-4">Updates</h2>
+      <ul style={{ 'listStyle':'none', 'marginBottom':'150px', 'padding':'0' }}>
       {
         treeUpdates.map((treeUpdate, index) => {
           return <TreeUpdate key={index} user={treeUpdate.user} text={treeUpdate.text} img={`data:image/${treeUpdate.image.contentType};base64,${_arrayBufferToBase64(treeUpdate.image.data.data)}`} date={treeUpdate.createdAt} />
@@ -108,7 +118,7 @@ export const TreeProfile = (props) => {
   } else {
     return (
       <Container>
-        <Spinner animation="border" variant="primary" />
+        <Spinner className="mt-4" animation="border" variant="primary" />
       </Container>
     )
   }

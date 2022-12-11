@@ -12,11 +12,11 @@ import {
 }
 from 'mdb-react-ui-kit'
 import logo from "../images/logo/logo.svg"
-import apiService from '../services/apiService';
-import { Notification } from './Notifications';
-import { useNavigate } from 'react-router-dom';
-import { TopNav } from './TopNav';
-import { Container } from 'react-bootstrap';
+import apiService from '../services/apiService'
+import { Notification } from './Notifications'
+import { useNavigate } from 'react-router-dom'
+import { TopNav } from './TopNav'
+import { Container } from 'react-bootstrap'
 
 export const Login = () => {
   const [email, setEmail] = useState("")
@@ -29,11 +29,11 @@ export const Login = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    const loggedInUser = localStorage.getItem("user");
+    const loggedInUser = localStorage.getItem("user")
     if (loggedInUser) {
-      const foundUser = JSON.parse(loggedInUser);
+      const foundUser = JSON.parse(loggedInUser)
       console.log(foundUser)
-      setUser(foundUser);
+      setUser(foundUser)
     }
   }, [])
 

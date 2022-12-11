@@ -1,0 +1,15 @@
+
+.update-tree-container {
+  position: fixed;
+  top: 20%;
+}
+
+#update-tree-x {
+  cursor: pointer;
+  display: flex;
+  margin-left: auto;
+}
+
+#update-tree-card {
+  border-radius: 1em;
+}
