@@ -1,3 +1,5 @@
+# The project has been deployed [here](https://tree-group12.fly.dev)
+
 # Git workflow
 
 Ohjeet koodaamiseen:
