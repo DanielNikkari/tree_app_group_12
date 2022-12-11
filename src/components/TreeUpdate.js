@@ -7,7 +7,7 @@ import {
 
 export const TreeUpdate = (props) => {
   return (
-    <li>
+    <li className="mx-2">
       <MDBCard className="mx-auto" style={{ maxWidth: '700px', borderRadius: '1em', marginBottom: '2em' }}>
       <MDBCardBody>
       <h2>{props.user}</h2>

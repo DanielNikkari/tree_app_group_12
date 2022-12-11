@@ -112,7 +112,7 @@ export const Register = (props) => {
       <MDBRow>
 
         <MDBCol col='4' md='6' className='mx-auto'>
-          <h1>Register</h1>
+          <h1 className='mb-5'>Register</h1>
           <MDBValidation className='' isValidated>
           <MDBValidationItem feedback='Please provide your first and last name' invalid className=''>
           <Row className='mb-5'>
@@ -141,14 +141,14 @@ export const Register = (props) => {
             <MDBInput value={passwordRetype} onChange={handlePasswordRetype} required wrapperClass='mb-5' label='Retype Password' type='password' size="lg"/>
           </MDBValidationItem>
 
-          <MDBBtn onClick={handleRegistering} className="mb-4 w-100 btn btn-success" size="lg">Register</MDBBtn>
-          <MDBBtn href='/login' className="mb-4 w-100 btn btn-secondary" size="lg">Sign in</MDBBtn>
+          <MDBBtn style={{ backgroundColor: '#DC965A', color: '#FEFFF0' }} rounded onClick={handleRegistering} className="mb-4 w-100 btn btn-secondary" size="lg">Register</MDBBtn>
+          <MDBBtn style={{ color: '#000' }} rounded href='/login' className="mb-4 w-100 btn btn-secondary" size="lg">Sign in</MDBBtn>
 
           <div className="divider align-items-center my-4">
             <p className="text-center fw-bold mx-3 mb-0">OR</p>
           </div>
 
-          <MDBBtn className="mb-4 w-100" size="lg" style={{backgroundColor: '#d34836'}}>
+          <MDBBtn rounded className="mb-4 w-100" size="lg" style={{backgroundColor: '#d34836'}}>
             <MDBIcon fab icon="google" className="mx-2"/>
             Continue with Google
           </MDBBtn>

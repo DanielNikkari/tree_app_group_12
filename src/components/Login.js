@@ -111,7 +111,7 @@ export const Login = () => {
       <MDBRow>
 
         <MDBCol col='4' md='6' className='mx-auto'>
-          <h1>Sign in</h1>
+          <h1 className='mb-5'>Sign in</h1>
           <MDBInput value={email} onChange={handleEmailChange} wrapperClass='mb-4' label='Email address' type='email' size="lg"/>
           <MDBInput value={password} onChange={handlePasswordChange} wrapperClass='mb-4' label='Password' type='password' size="lg"/>
 
@@ -120,15 +120,15 @@ export const Login = () => {
             <a href="/login">Forgot password?</a>
           </div>
 
-          <MDBBtn onClick={signIn} className="mb-4 w-100 btn btn-success" size="lg">Sign in</MDBBtn>
+          <MDBBtn style={{ backgroundColor: '#DC965A', color: '#FEFFF0' }} rounded onClick={signIn} className="mb-4 w-100 btn btn-secondary" size="lg">Sign in</MDBBtn>
 
-          <MDBBtn href='/register' className="mb-4 w-100 btn btn-secondary" size="lg">Register</MDBBtn>
+          <MDBBtn style={{ color: '#000' }} rounded href='/register' className="mb-4 w-100 btn btn-secondary" size="lg">Register</MDBBtn>
 
           <div className="divider align-items-center my-4">
             <p className="text-center fw-bold mx-3 mb-0">OR</p>
           </div>
 
-          <MDBBtn className="mb-4 w-100" size="lg" style={{backgroundColor: '#d34836'}}>
+          <MDBBtn rounded className="mb-4 w-100" size="lg" style={{backgroundColor: '#d34836'}}>
             <MDBIcon fab icon="google" className="mx-2"/>
             Continue with Google
           </MDBBtn>

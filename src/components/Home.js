@@ -6,6 +6,8 @@ import { TopNav } from "./TopNav"
 import "../styles/Home.css"
 import homeFlair from "../images/icons/homeFlair.svg"
 import apiService from "../services/apiService"
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 
 export const Home = () => {
 
@@ -54,6 +56,13 @@ export const Home = () => {
     setUser(null)
   }
 
+
+  const renderTooltip = (props) => (
+    <Tooltip id="button-tooltip" {...props}>
+      By signing in you may be eligible for benefits such as tax reductions and you can keep track of your planted trees and more
+    </Tooltip>
+  )
+
   return (
     <Container className="Home-view">
       <TopNav user={user} />
@@ -77,7 +86,7 @@ export const Home = () => {
         </div>
         :
         <div>
-        <div className="d-grid gap-2 col-6 mx-auto">
+        <div className="d-grid gap-2 col-6 mx-auto mt-5">
         <MDBBtn rounded id = "sign-in" onClick={handleLogin} className="btn-primary">
           Sign in
 
@@ -89,9 +98,11 @@ export const Home = () => {
           <p className="text-center fw-bold mx-3 mb-0">OR</p>
         </div>
         <div>
+        <OverlayTrigger placement="right" delay={{ show: 250, hide: 400 }} overlay={renderTooltip}>
           <MDBBtn rounded id="cont" href="/treeregister" outline className='mx-2' color='secondary'>
             Continue without signing in
           </MDBBtn>
+        </OverlayTrigger>
         </div>
         </div>
       }

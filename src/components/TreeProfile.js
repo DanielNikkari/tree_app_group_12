@@ -76,14 +76,14 @@ export const TreeProfile = (props) => {
       <Container className="treeprofile-page">
         <TopNav user={user} />
         <a href="/treelist" className="d-flex mt-4 mb-3">
-          <img style={{ width: '6em' }} src={backButton} alt='' />
+          <img style={{ width: '6em', paddingLeft: '0.5em' }} src={backButton} alt='' />
         </a>
         <MDBCard className="mx-auto shadow-none" style={{ maxWidth: '700px', backgroundColor: 'transparent', borderRadius: '1em', marginBottom: '2em' }}>
         <MDBCardBody>
         <div>
           {/* <img style={{height: '200px', width: '300px'}} src={`data:image/${tree.image.contentType};base64,${_arrayBufferToBase64(tree.image.data.data)}`} alt='' /> */}
           <MDBCardImage src={`data:image/${tree.image.contentType};base64,${_arrayBufferToBase64(tree.image.data.data)}`} position='top' style={{ borderRadius: '1em'}} />
-          <h1 className="text-start">{tree.name}</h1>
+          <h1 className="text-start mt-4">{tree.name}</h1>
           <div className="text-start mb-5">
           <h3>Number planted {tree.numberPlanted}</h3>
           <h3>Planted on {new Date(tree.createdAt).toDateString()}</h3>
