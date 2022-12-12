@@ -33,7 +33,7 @@ export const TreeCard = (props) => {
       </Col>
       </a>
     </Row> */}
-    <MDBCard id="tree-card" className="mx-auto" style={{ maxWidth: '600px', backgroundColor: '#E1F0D4', borderRadius: '1em', marginBottom: '2em' }}>
+    <MDBCard id="tree-card" className="mx-auto" style={{ maxWidth: '600px', backgroundColor: '#fff', borderRadius: '1em', marginBottom: '2em' }}>
     <a href={`/treelist/${props.id}`}>
     <MDBRow className='g-0'>
       <MDBCol md='4'>
@@ -41,11 +41,11 @@ export const TreeCard = (props) => {
       </MDBCol>
       <MDBCol md='8'>
         <MDBCardBody>
-          <MDBCardTitle id="tree-card-title">{props.name}, {props.numPlanted}</MDBCardTitle>
-          <MDBCardText className="tree-card-info-text">
+          <MDBCardTitle className="text-start" style={{ color: 'black' }} id="tree-card-title">{props.name}, {props.numPlanted}</MDBCardTitle>
+          <MDBCardText className="text-start tree-card-info-text">
             Planted by {props.user}
           </MDBCardText>
-          <MDBCardText className="tree-card-info-text">
+          <MDBCardText className="text-start tree-card-info-text">
             Planted on {date.toDateString()}
           </MDBCardText>
           <img id="tree-card-google-map" src={`https://maps.googleapis.com/maps/api/staticmap?center=${props.location.latitude},${props.location.longitude}&format=gif&zoom=${12}&size=300x100&markers=color:red%7C${props.location.latitude},${props.location.longitude}&key=${GOOGLE_API_KEY}`} alt='' />

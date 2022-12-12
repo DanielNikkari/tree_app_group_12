@@ -5,12 +5,16 @@ import apiService from "../services/apiService"
 import { useParams } from "react-router"
 import "../styles/UpdateTree.css"
 import xIcon from "../images/icons/x.png"
+import { Notification } from "./Notifications"
 
 export const UpdateTree = (props) => {
 
   const [file, setFile] = useState({ selectedFile: null })
   const [observations, setObservations] = useState("")
   const [user, setUser] = useState(null)
+  const [error, setError] = useState(false)
+  const [message, setMessage] = useState(null)
+  const [submitting, setSubmitting] = useState(false)
 
   useEffect(() => {
     const loggedInUser = localStorage.getItem("user");
@@ -41,11 +45,22 @@ export const UpdateTree = (props) => {
       setObservations("")
       setFile({ selectedFile: null })
       console.log("Update data sent")
-      props.closeUpdate()
+      // setMessage("Update added")
+      // setError(false)
+      setSubmitting(true)
+      setTimeout(() => {
+        // setMessage(null)
+        props.closeUpdate()
+      }, 1500)
     })
     .catch(error => {
       console.log("Error with updating tree", error)
-      props.closeUpdate()
+      // props.closeUpdate()
+      setMessage(error.response.data.error)
+      setError(true)
+      setTimeout(() => {
+        setMessage(null)
+      }, 3000)
     })
   }
 
@@ -60,8 +75,12 @@ export const UpdateTree = (props) => {
 
   return (
     <Container className="update-tree-container">
+      <Notification message={message} error={error} />
       <MDBCard className="mx-auto" id="update-tree-card">
       <MDBCardBody>
+      {
+        submitting === false ?
+      <div>
       <img id="update-tree-x" onClick={() => props.closeUpdate()} src={xIcon} alt='' />
       <h1>{props.treeName} Update</h1>
       <Form onSubmit={addUpdate}>
@@ -86,6 +105,10 @@ export const UpdateTree = (props) => {
         <MDBBtn style={{ backgroundColor: '#DC965A', color: '#FEFFF0' }} rounded className="btn btn-secondary mt-3" type="submit">Submit</MDBBtn>
         </div>
       </Form>
+      </div>
+      :
+      <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
+      }
       </MDBCardBody>
       </MDBCard>
     </Container>
