@@ -9,6 +9,8 @@ import { useNavigate } from 'react-router-dom';
 
 export const TopNav = (props) => {
 
+  const pathname = window.location.pathname
+
   const navigate = useNavigate()
 
   const handleLogout = (event) => {
@@ -24,10 +26,16 @@ export const TopNav = (props) => {
       
       {
         props.user ?
+        pathname === "/" ?
+        null
+        :
         <div className="sign-in-status-container">
           <p className="sign-in-status">Signed in as {props.user.userName}</p>
           <MDBBtn rounded id="logout" onClick={handleLogout} href="/" size='' className='me-2 topnav-logout' active>Log out</MDBBtn>
         </div>
+        :
+        pathname === "/" ?
+        null
         :
         <div className="sign-in-topnav">
         <MDBBtn rounded id= "sign-in-btn" href="/login" size='' className='me-2 btn-success' active>
